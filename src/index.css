@@ -8,11 +8,41 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-   
-  }
-
-  .dark {
-
+    --background: 270 100% 15%;
+    --foreground: 0 0% 100%;
+    
+    --primary: 270 100% 40%;
+    --primary-foreground: 270 20% 10%;
+    
+    --secondary: 290 100% 35%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --accent: 58 100% 70%;
+    --accent-foreground: 270 20% 10%;
+    
+    --muted: 270 50% 20%;
+    --muted-foreground: 0 0% 80%;
+    
+    --border: 270 50% 30%;
+    --input: 270 50% 25%;
+    --ring: 270 100% 50%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --card: 270 80% 18%;
+    --card-foreground: 0 0% 100%;
+    
+    --popover: 270 80% 18%;
+    --popover-foreground: 0 0% 100%;
+    
+    --radius: 0.75rem;
+    
+    /* Custom theme colors */
+    --purple-gradient-start: 270 100% 25%;
+    --purple-gradient-end: 290 100% 40%;
+    --yellow-accent: 58 100% 70%;
+    --pink-accent: 320 100% 80%;
   }
 }
 
@@ -20,8 +50,57 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-to-br from-[hsl(var(--purple-gradient-start))] to-[hsl(var(--purple-gradient-end))] text-foreground min-h-screen;
+    font-family: "DM Sans", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(135deg, 
+      hsl(270, 100%, 25%) 0%, 
+      hsl(285, 100%, 35%) 50%, 
+      hsl(290, 100%, 40%) 100%);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, 
+      hsl(58, 100%, 70%) 0%, 
+      hsl(45, 100%, 80%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .floating-sticker {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .floating-sticker:nth-child(even) {
+    animation-delay: -1.5s;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.infinite-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
